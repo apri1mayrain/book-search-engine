@@ -6,9 +6,20 @@ const secret = 'mysecretsshhhhh';
 const expiration = '2h';
 
 module.exports = {
-  AuthenticationError: new GraphQLError('Could not authenticate user.', {
+  // Errors
+  AuthenticationError: new GraphQLError('You must be logged in to complete this action.', {
     extensions: {
       code: 'UNAUTHENTICATED',
+    },
+  }),
+  CredentialError: new GraphQLError('Incorrect email or password.', {
+    extensions: {
+      code: 'BAD_USER_INPUT',
+    },
+  }),
+  ServerError: new GraphQLError('Something went wrong... please try again.', {
+    extensions: {
+      code: 'INTERNAL_SERVER_ERROR',
     },
   }),
   // function for our authenticated routes
